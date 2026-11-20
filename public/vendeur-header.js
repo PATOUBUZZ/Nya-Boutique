@@ -52,7 +52,7 @@
       var probe = new Image();
       probe.onload = function () {
         var w = probe.naturalWidth, h = probe.naturalHeight, ratio = w / h, avis = '';
-        if (w < 1200 || ratio < 1.8 || ratio > 3.6) avis = ' ⚠️ ' + w + '×' + h + ' px : idéal 1600×640 (5:2) pour un rendu net sur tous les écrans.';
+        if (w < 1000 || ratio < 2.5 || ratio > 5.5) avis = ' ⚠️ ' + w + '×' + h + ' px : idéal 1600×400 (4:1) pour un rendu net sur tous les écrans.';
         else avis = w + '×' + h + ' px ✓';
         dessinerImage(avis);
       };

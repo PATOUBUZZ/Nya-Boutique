@@ -32,7 +32,7 @@
 .promo-setup { margin-bottom: 12px; }
 
 /* ───────── En-tête de la boutique (vendeur-header.js) : aperçu proportionné comme sur le site (5:2) ───────── */
-.h-zone { position: relative; width: 100%; aspect-ratio: 5 / 2; border-radius: 14px; overflow: hidden; background: #f1f5f9; border: 2px dashed #cbd5e1;
+.h-zone { position: relative; width: 100%; aspect-ratio: 4 / 1; border-radius: 14px; overflow: hidden; background: #f1f5f9; border: 2px dashed #cbd5e1;
   display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 1.8rem; }
 .h-zone.filled { border-style: solid; border-color: #e2e8f0; }
 .h-zone img { width: 100%; height: 100%; object-fit: cover; display: block; }

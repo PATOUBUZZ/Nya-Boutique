@@ -6,8 +6,9 @@
   'use strict';
 
   var DEFAUTS = {
-    backend: 'supabase', apiUrl: '/api', supabaseUrl: '', supabaseKey: '', cacheMinutes: 5, couleur: '#2563eb', devise: 'FCFA',
-    lotAffichage: 12, vitesseBande: 45, whatsappSupport: '', cleCache: 'nb_cache_v1', cleePanier: 'nb_panier_v1'
+    backend: 'neon', apiUrl: '/api', supabaseUrl: '', supabaseKey: '', cacheMinutes: 5, couleur: '#2563eb', devise: 'FCFA',
+    lotAffichage: 12, vitesseBande: 45, whatsappSupport: '', cleCache: 'nb_cache_v1', cleePanier: 'nb_panier_v1',
+    enteteImage: {}, theme: {}   // réglages avancés (config.js) : lus par appliquerTheme()
   };
   var cfg = {};
   var src = window.NB_CONFIG || {};
@@ -121,8 +122,49 @@
   function appliquerCouleur() {
     var c = /^#[0-9a-f]{6}$/i.test(String(cfg.couleur)) ? cfg.couleur : '#2563eb';
     document.documentElement.style.setProperty('--brand', c);
+    appliquerTheme();
     var m = document.querySelector('meta[name="theme-color"]');
     if (m) m.setAttribute('content', c);
+  }
+
+
+  /** Personnalisation avancée (config.js) → variables CSS. Toute valeur vide ou invalide est ignorée : le style d'origine reste. */
+  function appliquerTheme() {
+    var racine = document.documentElement.style;
+    var poser = function (nom, v) { if (v !== null && v !== undefined && v !== '') racine.setProperty(nom, v); };
+    var couleur = function (v) { v = String(v || '').trim(); return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(v) ? v : ''; };
+    var nombre = function (v, def, min, max) { v = parseFloat(v); return (v >= min && v <= max) ? v : def; };
+    var entier = function (v, def, min, max) { v = parseInt(v, 10); return (v >= min && v <= max) ? v : def; };
+    var t = cfg.theme || {}, e = cfg.enteteImage || {};
+
+    // Cadre de l'image d'en-tête
+    poser('--hdr-w', entier(e.largeurMax, 1000, 320, 2400) + 'px');
+    poser('--hdr-h', entier(e.hauteur, 250, 60, 800) + 'px');
+    poser('--hdr-h-m', entier(e.hauteurMobile, 150, 60, 800) + 'px');
+    if (/^(center|top|bottom|left|right|[0-9]{1,3}%)( (center|top|bottom|left|right|[0-9]{1,3}%))?$/.test(String(e.positionImage || '').trim()))
+      poser('--hdr-pos', String(e.positionImage).trim());
+    poser('--hdr-veil', nombre(e.voile, 1, 0, 1));
+
+    // Couleurs de l'en-tête
+    poser('--hdr-name-color', couleur(t.couleurNom));
+    poser('--hdr-desc-color', couleur(t.couleurDescription));
+    poser('--hdr-icons', couleur(t.couleurIcones));
+    poser('--hdr-bg', couleur(t.couleurFondEntete));
+    if (t.ombreTexteEntete === false) poser('--hdr-shadow', 'none');
+    if (t.tailleNom) poser('--hdr-name-size', nombre(t.tailleNom, 1, 0.8, 2.4) + 'rem');
+    if (t.tailleDescription) poser('--hdr-desc-size', nombre(t.tailleDescription, 0.8, 0.6, 1.4) + 'rem');
+
+    // Reste du site
+    poser('--ticker-bg', couleur(t.couleurBande));
+    poser('--ticker-text', couleur(t.couleurTexteBande));
+    poser('--deal', couleur(t.couleurPromo));
+    poser('--bg', couleur(t.couleurFond));
+    poser('--card', couleur(t.couleurCartes));
+    poser('--ink', couleur(t.couleurTitres));
+    poser('--wa', couleur(t.couleurWhatsApp));
+    var rayons = { carre: ['2px', '4px', '6px'], doux: ['10px', '16px', '22px'], rond: ['16px', '26px', '34px'] }[String(t.arrondis || '').toLowerCase()];
+    if (rayons) { racine.setProperty('--r-sm', rayons[0]); racine.setProperty('--r-md', rayons[1]); racine.setProperty('--r-lg', rayons[2]); }
+    if (/^[\w\s,'"-]{2,160}$/.test(String(t.police || ''))) poser('--font', String(t.police));
   }
 
   function lire(cle) { try { return JSON.parse(localStorage.getItem(cle)); } catch (e) { return null; } }
@@ -131,7 +173,7 @@
 
   window.NB = {
     cfg: cfg, neon: NEON, api: API, configOk: configOk, lirePublic: lirePublic, cheminImage: cheminImage, icon: icon, el: el, prix: prix, urlImage: urlImage, urlLien: urlLien,
-    chiffres: chiffres, nbMots: nbMots, appliquerCouleur: appliquerCouleur,
+    chiffres: chiffres, nbMots: nbMots, appliquerCouleur: appliquerCouleur, appliquerTheme: appliquerTheme,
     lire: lire, ecrire: ecrire, effacer: effacer,
     $: function (id) { return document.getElementById(id); }
   };
