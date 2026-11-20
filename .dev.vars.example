@@ -1,0 +1,5 @@
+# Copiez ce fichier en « .dev.vars » pour tester en local (npm run dev). NE LE PUBLIEZ JAMAIS.
+DATABASE_URL="postgresql://utilisateur:motdepasse@ep-xxxx-pooler.region.aws.neon.tech/neondb?sslmode=require"
+GOOGLE_CLIENT_ID="xxxx.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET="xxxx"
+SESSION_SECRET="une-longue-chaine-aleatoire-de-32-caracteres-minimum"

@@ -1,0 +1,13 @@
+{
+  "name": "nya-boutique",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Nya-Boutique — site statique + API Cloudflare Pages Functions + base Neon",
+  "scripts": {
+    "dev": "wrangler pages dev public --r2=IMAGES --compatibility-date=2025-01-01",
+    "deploy": "wrangler pages deploy public"
+  },
+  "dependencies": { "@neondatabase/serverless": "^1.0.0" },
+  "devDependencies": { "wrangler": "^4.0.0" }
+}
