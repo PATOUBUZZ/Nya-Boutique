@@ -1,0 +1,15 @@
+# Nya-Boutique — Cloudflare Pages (site dans public/, API dans functions/)
+name = "nya-boutique"
+pages_build_output_dir = "public"
+compatibility_date = "2025-01-01"
+
+# Stockage des images (créez le bucket : wrangler r2 bucket create nya-boutique-images)
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "nya-boutique-images"
+
+# Les SECRETS (DATABASE_URL, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, SESSION_SECRET) ne se mettent JAMAIS ici :
+# voir GUIDE-NEON-CLOUDFLARE.md (wrangler pages secret put …)
+# Facultatif — images servies depuis un domaine R2 personnalisé :
+# [vars]
+# IMAGES_PUBLIC_URL = "https://img.maboutique.com"

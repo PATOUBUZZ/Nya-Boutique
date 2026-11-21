@@ -60,7 +60,7 @@
     if (/ancien_prix/i.test(m)) return 'Le prix promotionnel doit être inférieur au prix normal.';
     if (/images/i.test(m) && /check|violat/i.test(m)) return 'Il faut entre 1 et 4 photos valides.';
     if (/whatsapp/i.test(m)) return 'Numéro WhatsApp invalide (8 à 15 chiffres, sans + ni espaces).';
-    if (/column .*does not exist|42703|42P01|relation .*does not exist/i.test(m)) return 'Base Neon à mettre à jour : exécutez SQL/1-schema-neon.sql (voir le guide).';
+    if (/column .*does not exist|42703|42P01|relation .*does not exist/i.test(m)) return 'Base à mettre à jour : exécutez SQL/5-header-personnalise.sql dans Supabase (SQL Editor), puis rechargez.';
     if (/Failed to fetch|NetworkError|network/i.test(m)) return 'Connexion impossible. Vérifiez votre réseau et réessayez.';
     if (/Payload too large|exceeded the maximum|too large/i.test(m)) return 'Photo trop lourde.';
     return m;

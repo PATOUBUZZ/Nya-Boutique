@@ -69,7 +69,7 @@
   }
 
   /* ───────────────────────────── Chargement des données ───────────────────────────── */
-  function rest(chemin) { return NB.lirePublic(chemin); }   // Supabase ou Neon selon config.js
+  function rest(chemin) { return NB.lirePublic(chemin); }   // Supabase (config.js)
   function telecharger() {
     return Promise.all([
       // Les 2 nouveaux champs d'en-tête (SQL/5) sont demandés d'abord ; si la base n'est pas encore à jour, on retombe sur l'ancienne requête
@@ -199,7 +199,23 @@
       el('div', { 'class': 'card-price' }, [el('span', { 'class': 'price', text: NB.prix(p.prix) }), p.ancien_prix > p.prix ? el('span', { 'class': 'price-old', text: NB.prix(p.ancien_prix) }) : null])
     ]);
     a.appendChild(img); a.appendChild(corps);
-    return a;
+    if (cfg.boutonsGrille === false) return a;           // option config.js : boutons de grille désactivés → carte d'origine
+    return ajouterBoutonsGrille(a, p);
+  }
+
+  /* ───────── AJOUT : boutons « Commander » et « Ajouter au panier » directement sur les cartes de la grille ─────────
+     Les boutons sont placés À CÔTÉ du lien de la carte (pas dedans) : le clic sur la photo ou le nom ouvre toujours la fiche produit.
+     Ils utilisent exactement les mêmes fonctions que la fiche produit (ajouterAuPanier, ouvrirPanier, toast). */
+  function ajouterBoutonsGrille(a, p) {
+    var bCommander = el('button', { 'class': 'btn btn-order', type: 'button', 'aria-label': 'Commander ' + p.nom }, [NB.icon('whatsapp', 16), el('span', { text: 'Commander' })]);
+    var bAjouter = el('button', { 'class': 'btn btn-add', type: 'button', 'aria-label': 'Ajouter ' + p.nom + ' au panier' }, [NB.icon('cart', 16), el('span', { text: 'Ajouter au panier' })]);
+    bCommander.onclick = function () { ajouterAuPanier(p, true); ouvrirPanier(); };
+    bAjouter.onclick = function () {
+      ajouterAuPanier(p, false);
+      bAjouter.classList.add('done'); setTimeout(function () { bAjouter.classList.remove('done'); }, 1200);
+      toast('Ajouté au panier ✓');
+    };
+    return el('div', { 'class': 'card-item' }, [a, el('div', { 'class': 'card-actions' }, [bCommander, bAjouter])]);
   }
 
   function ajouterLot() {
