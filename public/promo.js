@@ -25,7 +25,7 @@
   var DUREE_ANIM = 700;                              // filet de sécurité si « transitionend » ne se déclenche pas
 
   /* ───────────────────────────── Chargement des données (avec cache) ───────────────────────────── */
-  function rest(chemin) { return NB.lirePublic(chemin); }   // Supabase (config.js)
+  function rest(chemin) { return NB.lirePublic(chemin); }   // Supabase ou Neon selon config.js
   function telecharger() {
     return Promise.all([
       rest('boutique?select=tiktok_url,facebook_url,promo_actif&id=eq.1'),

@@ -22,7 +22,7 @@
   }
   function messageErreur(e) {
     var m = String((e && e.message) || e || 'Erreur inconnue');
-    if (/column .*does not exist|42703|schema cache/i.test(m)) return 'Base à mettre à jour : exécutez SQL/5-header-personnalise.sql dans Supabase (SQL Editor), puis rechargez.';
+    if (/column .*does not exist|42703|schema cache/i.test(m)) return 'Base Neon à mettre à jour : exécutez SQL/1-schema-neon.sql (voir le guide), puis rechargez.';
     if (/permission denied|42501|PGRST116/i.test(m)) return 'Accès refusé : reconnectez-vous avec le compte propriétaire.';
     if (/check constraint|violates check/i.test(m)) return 'Une valeur est refusée par la base (texte trop long ou lien invalide).';
     if (/Failed to fetch|NetworkError|network/i.test(m)) return 'Connexion impossible. Vérifiez votre réseau et réessayez.';

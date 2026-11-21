@@ -69,7 +69,7 @@
   }
 
   /* ───────────────────────────── Chargement des données ───────────────────────────── */
-  function rest(chemin) { return NB.lirePublic(chemin); }   // Supabase (config.js)
+  function rest(chemin) { return NB.lirePublic(chemin); }   // Supabase ou Neon selon config.js
   function telecharger() {
     return Promise.all([
       // Les 2 nouveaux champs d'en-tête (SQL/5) sont demandés d'abord ; si la base n'est pas encore à jour, on retombe sur l'ancienne requête

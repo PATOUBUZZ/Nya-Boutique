@@ -44,7 +44,7 @@
   function octets(n) { return n >= 1048576 ? (n / 1048576).toFixed(1).replace('.', ',') + ' Mo' : Math.max(1, Math.round(n / 1024)) + ' Ko'; }
   function invaliderCache() { NB.effacer(CLE_CACHE); }
 
-  var MSG_SQL = 'La base de données n’est pas à jour : exécutez le fichier SQL/4-promo-reseaux.sql dans Supabase (SQL Editor), puis rechargez cette page.';
+  var MSG_SQL = 'La base de données n’est pas à jour : exécutez le fichier SQL/1-schema-neon.sql dans Neon (SQL Editor), puis rechargez cette page.';
   function messageErreur(e) {
     var m = String((e && (e.message || e.error_description)) || e || 'Erreur inconnue');
     if (/PGRST20[45]|42P01|42703|does not exist|Could not find (the )?(table|column)|schema cache/i.test(m)) return MSG_SQL;

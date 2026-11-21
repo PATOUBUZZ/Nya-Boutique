@@ -5,18 +5,14 @@
    ============================================================================ */
 window.NB_CONFIG = {
 
-  /* ── 0) BACK-END : SUPABASE (version « Supabase » du projet) ───────────────────────────────────────────── */
-  backend: 'supabase',
-
-  /* ── 1) SUPABASE (Supabase > Project Settings > API) ───────────────────────
-     • supabaseUrl : « Project URL »            ex. https://abcdefgh.supabase.co
-     • supabaseKey : clé PUBLIQUE (« anon » ou « publishable »).
-       ⚠️ Ne mettez JAMAIS la clé « service_role » / « secret » ici.            */
-  supabaseUrl: 'https://VOTRE-PROJET.supabase.co',
-  supabaseKey: 'VOTRE_CLE_PUBLIQUE_ANON',
+  /* ── 0) BACK-END : base de données NEON (via l'API Cloudflare du dossier « functions/ ») ───────────────────
+     • backend : 'neon'      → aucune clé dans ce fichier : DATABASE_URL reste un SECRET côté Cloudflare.
+     • apiUrl  : '/api'      → laissez tel quel (le site et l'API sont sur le même domaine Cloudflare Pages).           */
+  backend: 'neon',
+  apiUrl: '/api',
 
   /* ── 2) CACHE : durée pendant laquelle le navigateur du visiteur réutilise les
-        données sans interroger Supabase. Les modifications du propriétaire
+        données sans interroger l'API. Les modifications du propriétaire
         apparaissent donc chez les visiteurs après ce délai (5 à 10 minutes).    */
   cacheMinutes: 5,
 

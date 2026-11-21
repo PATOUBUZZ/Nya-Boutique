@@ -6,7 +6,7 @@
   'use strict';
 
   var DEFAUTS = {
-    backend: 'supabase', apiUrl: '/api', supabaseUrl: '', supabaseKey: '', cacheMinutes: 5, couleur: '#2563eb', devise: 'FCFA',
+    backend: 'neon', apiUrl: '/api', supabaseUrl: '', supabaseKey: '', cacheMinutes: 5, couleur: '#2563eb', devise: 'FCFA',
     lotAffichage: 12, vitesseBande: 45, whatsappSupport: '', cleCache: 'nb_cache_v1', cleePanier: 'nb_panier_v1',
     boutonsGrille: true, enteteImage: {}, theme: {}   // réglages avancés (config.js) : lus par appliquerTheme()
   };
