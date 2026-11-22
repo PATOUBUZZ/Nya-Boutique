@@ -286,3 +286,20 @@ main { padding: calc(var(--top-h) + 12px) 12px 28px; max-width: 760px; margin: 0
 .site-header:not(.has-bg) .brand-name { font-size: var(--hdr-name-size, 1rem); }
 .site-header:not(.has-bg) .brand-tagline { font-size: var(--hdr-desc-size, .72rem); }
 .site-header.has-bg .brand-logo { width: 46px; height: 46px; }
+
+/* ============================================================================
+   AJOUT — Boutons « Commander » / « Ajouter au panier » sur les cartes de la grille
+   Le conteneur .card-item reprend l'apparence de la carte (bordure, ombre, coins) ; le lien .card garde son rôle.
+   Désactivable dans config.js : boutonsGrille: false
+   ============================================================================ */
+.card-item {
+  display: flex; flex-direction: column; min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md);
+  box-shadow: var(--sh-1); overflow: hidden; transition: transform .2s, box-shadow .2s;
+}
+@media (hover: hover) { .card-item:hover { transform: translateY(-3px); box-shadow: var(--sh-2); } }
+.card-item > a.card { flex: 1; border: 0; border-radius: 0; box-shadow: none; background: transparent; transform: none !important; }
+.card-actions { display: flex; flex-direction: column; gap: 6px; padding: 0 8px 10px; }
+.card-actions .btn { width: 100%; min-height: 36px; padding: 0 6px; gap: 5px; font-size: .74rem; box-shadow: none; }
+.card-actions .btn-order { box-shadow: 0 4px 10px rgba(18,168,79,.25); }
+.card-actions .btn span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.card-actions .btn svg { flex: none; }

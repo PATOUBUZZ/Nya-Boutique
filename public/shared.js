@@ -8,7 +8,7 @@
   var DEFAUTS = {
     backend: 'neon', apiUrl: '/api', supabaseUrl: '', supabaseKey: '', cacheMinutes: 5, couleur: '#2563eb', devise: 'FCFA',
     lotAffichage: 12, vitesseBande: 45, whatsappSupport: '', cleCache: 'nb_cache_v1', cleePanier: 'nb_panier_v1',
-    boutonsGrille: true, enteteImage: {}, theme: {}   // réglages avancés (config.js) : lus par appliquerTheme()
+    boutonsGrille: true, logo: '', protection: {}, enteteImage: {}, theme: {}   // réglages avancés (config.js) : lus par appliquerTheme()
   };
   var cfg = {};
   var src = window.NB_CONFIG || {};
@@ -111,6 +111,15 @@
   /** Adresse d'image acceptée : https uniquement */
   function urlImage(u) { u = String(u || '').trim(); return /^https:\/\//i.test(u) ? u : ''; }
 
+  /** Logo de la boutique : le fichier indiqué dans config.js (logo: 'logo/mon-logo.webp') passe en premier ;
+      sinon on garde l'ancien réglage de la base (boutique.logo_url) : rien ne casse pour les sites déjà configurés. */
+  function logoUrl(b) {
+    var l = String(cfg.logo || '').trim();
+    if (/^(\.\/)?[A-Za-z0-9_\-][A-Za-z0-9_\-.\/ ]*\.(png|jpe?g|webp|svg|gif|avif)(\?[A-Za-z0-9=._&-]{1,40})?$/i.test(l) && l.indexOf('..') < 0) return l.replace(/ /g, '%20');
+    if (/^https:\/\//i.test(l)) return l;
+    return urlImage(b && b.logo_url);
+  }
+
   /** Lien de la bande défilante accepté : https://, /chemin, ?requête ou #ancre (jamais javascript:, data:…) */
   function urlLien(u) { u = String(u || '').trim(); return /^(https:\/\/|\/|\?|#)/i.test(u) ? u : ''; }
 
@@ -172,7 +181,7 @@
   function effacer(cle) { try { localStorage.removeItem(cle); } catch (e) { /* idem */ } }
 
   window.NB = {
-    cfg: cfg, neon: NEON, api: API, configOk: configOk, lirePublic: lirePublic, cheminImage: cheminImage, icon: icon, el: el, prix: prix, urlImage: urlImage, urlLien: urlLien,
+    cfg: cfg, neon: NEON, api: API, configOk: configOk, lirePublic: lirePublic, cheminImage: cheminImage, icon: icon, el: el, prix: prix, urlImage: urlImage, logoUrl: logoUrl, urlLien: urlLien,
     chiffres: chiffres, nbMots: nbMots, appliquerCouleur: appliquerCouleur, appliquerTheme: appliquerTheme,
     lire: lire, ecrire: ecrire, effacer: effacer,
     $: function (id) { return document.getElementById(id); }

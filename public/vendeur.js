@@ -7,7 +7,7 @@
    • Produits : ajouter / modifier / masquer / supprimer, 1 à 4 photos, « Plus d'informations » ≤ 60 mots,
      PRIX PROMOTIONNEL (prix normal barré + pourcentage). Publication DIRECTE (aucune validation).
    • Limite de produits : boutique.max_produits (16 par défaut, augmentée par le développeur dans Supabase),
-     avec barre de progression. Le logo ne se change PAS ici : il est réglé par le développeur (boutique.logo_url).
+     avec barre de progression. Le logo ne se change PAS ici : il se règle dans config.js (logo: 'logo/…') ou, à défaut, par le développeur (boutique.logo_url).
    • Photos : ≤ 120 Ko → envoyées telles quelles ; > 120 Ko → WebP ≤ 130 Ko, meilleure qualité possible.
    • Bande défilante : ajouter / modifier / réordonner / masquer / supprimer (table « annonces », 10 maximum).
    • Informations : nom, propriétaire, description, WhatsApp, ville, localisation (table « boutique »).
@@ -227,7 +227,8 @@
     $('shop-name').textContent = b.nom || 'Ma boutique';
     $('brand-name').textContent = b.nom || 'Ma boutique';
     $('shop-account-status').innerHTML = '<span class="badge badge-publie"><i class="fas fa-check-circle"></i> Boutique en ligne</span>';
-    var logo = NB.urlImage(b.logo_url), im = $('shop-logo');
+    var logo = NB.logoUrl(b), im = $('shop-logo');
+    im.onerror = function () { im.classList.add('hidden'); };   // fichier introuvable : on masque l'image cassée
     if (logo) im.src = logo; else im.removeAttribute('src');
     im.classList.toggle('hidden', !logo);
 

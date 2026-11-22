@@ -91,7 +91,7 @@
   /* ───────────────────────────── En-tête, bande défilante, pied de page ───────────────────────────── */
   function logo(conteneur, b) {
     conteneur.textContent = '';
-    var u = NB.urlImage(b.logo_url);
+    var u = NB.logoUrl(b);
     if (u) { var i = el('img', { src: u, alt: '', width: 46, height: 46, decoding: 'async' }); i.onerror = function () { conteneur.textContent = (b.nom || 'B').charAt(0).toUpperCase(); }; conteneur.appendChild(i); }
     else conteneur.textContent = (b.nom || 'B').charAt(0).toUpperCase();
   }
@@ -107,7 +107,7 @@
       var m = document.querySelector('meta[name="description"]'); if (m) m.setAttribute('content', desc);
       var od = document.querySelector('meta[property="og:description"]'); if (od) od.setAttribute('content', desc);
     }
-    var u = NB.urlImage(b.logo_url); if (u) $('favicon').setAttribute('href', u);
+    var u = NB.logoUrl(b); if (u) $('favicon').setAttribute('href', u);
     appliquerEnteteImage(b);
   }
 

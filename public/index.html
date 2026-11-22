@@ -6,9 +6,24 @@
   <title>Boutique</title>
   <meta name="description" content="Découvrez notre boutique et commandez directement sur WhatsApp. Paiement à la livraison.">
   <meta name="theme-color" content="#2563eb">
+  <!-- ═════ OPEN GRAPH : aperçu affiché quand le lien est partagé (WhatsApp, Facebook, Telegram, SMS…) ═════
+       ► À CONFIGURER : remplacez VOTRE-DOMAINE.com par l'adresse de votre site et déposez votre image dans le dossier public/.
+       ► Image : 1200 × 630 px (format 1,91:1), JPEG ou PNG, moins de 300 Ko, adresse COMPLÈTE en https://.
+       ► Les robots de partage ne lancent pas le JavaScript : le titre et la description ci-dessous sont donc ceux de l'aperçu.
+         Écrivez-y le vrai nom de la boutique (app.js les met à jour seulement pour les visiteurs du site).
+       ► Pas de balise og:url : chaque lien de produit (?p=…) garde ainsi son propre aperçu.
+       ► Après un changement, forcez l'actualisation de l'aperçu : developers.facebook.com/tools/debug (WhatsApp utilise le même cache). -->
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Boutique">
+  <meta property="og:locale" content="fr_FR">
   <meta property="og:title" content="Boutique">
   <meta property="og:description" content="Commandez directement sur WhatsApp. Paiement à la livraison.">
+  <meta property="og:image" content="https://VOTRE-DOMAINE.com/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Aperçu de la boutique">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://VOTRE-DOMAINE.com/og-image.jpg">
   <link rel="icon" id="favicon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232563eb'/%3E%3Cpath d='M18 46V18h6l16 21V18h6v28h-6L24 25v21z' fill='%23fff'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
   <!-- AJOUT : bannière promo, icônes TikTok/Facebook, grille 5 colonnes sur ordinateur (n'altère pas style.css) -->
@@ -106,6 +121,8 @@
 
   <script src="config.js"></script>
   <script src="shared.js"></script>
+  <!-- AJOUT : protection du contenu (sélection des textes, appui long, téléchargement des images) — réglable dans config.js -->
+  <script src="protection.js"></script>
   <script src="app.js"></script>
   <script src="promo.js"></script>
 </body>

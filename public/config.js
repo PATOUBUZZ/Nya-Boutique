@@ -22,6 +22,23 @@ window.NB_CONFIG = {
   lotAffichage: 12,          // nombre de produits ajoutés à chaque défilement (chargement progressif)
   vitesseBande: 45,          // vitesse de la bande défilante en haut (pixels par seconde)
 
+  /* ── 2 bis) LOGO DU VENDEUR — simple : un fichier dans GitHub ─────────────────────────────────────────────
+        1. Dans votre dépôt GitHub, ouvrez le dossier « public » et créez-y un dossier « logo » (s'il n'existe pas).
+        2. Déposez l'image dedans : carrée, 256 × 256 px, PNG / WebP / SVG, moins de 100 Ko.   Ex. : public/logo/logo.webp
+        3. Écrivez ci-dessous son chemin, SANS « public/ » :       logo: 'logo/logo.webp'
+        Le logo apparaît sur le site, dans l'espace vendeur et comme icône d'onglet.
+        Vous remplacez l'image sans changer son nom et l'ancienne s'affiche encore ? Ajoutez un numéro : 'logo/logo.webp?v=2'
+        '' (vide) = pas de fichier : l'ancien réglage de la base de données (logo_url) est alors utilisé s'il existe. */
+  logo: '',
+
+  /* ── 2 ter) PROTECTION DU CONTENU (site visiteur et espace vendeur) ─────────────────────────────────────────
+        true = activé (recommandé) · false = désactivé. Les champs de saisie (formulaires) restent normaux.
+        • selectionTexte       : empêche de sélectionner / copier les textes
+        • menuContextuel       : bloque le menu d'appui long (Android) et le clic droit
+        • telechargementImages : bloque « Télécharger l'image », le glisser-déposer et l'appui long sur les photos
+        ⚠️ C'est un frein, pas un coffre-fort : les captures d'écran restent possibles. */
+  protection: { selectionTexte: true, menuContextuel: true, telechargementImages: true },
+
   /* ── 3 bis bis) BOUTONS SUR LA GRILLE ───────────────────────────────────────────────────────────────────
         true  = chaque produit de la grille 2×2 affiche « Commander » et « Ajouter au panier » (recommandé)
         false = grille d'origine (les boutons restent uniquement dans la fiche du produit)                        */

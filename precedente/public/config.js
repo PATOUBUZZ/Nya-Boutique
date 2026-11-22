@@ -22,6 +22,11 @@ window.NB_CONFIG = {
   lotAffichage: 12,          // nombre de produits ajoutés à chaque défilement (chargement progressif)
   vitesseBande: 45,          // vitesse de la bande défilante en haut (pixels par seconde)
 
+  /* ── 3 bis bis) BOUTONS SUR LA GRILLE ───────────────────────────────────────────────────────────────────
+        true  = chaque produit de la grille 2×2 affiche « Commander » et « Ajouter au panier » (recommandé)
+        false = grille d'origine (les boutons restent uniquement dans la fiche du produit)                        */
+  boutonsGrille: true,
+
   /* ── 3 ter) EN-TÊTE AVEC IMAGE : conteneur à dimensions fixes (en pixels) ───────────────────────────────
         L'image de l'en-tête ne dépasse JAMAIS ces dimensions : elle est centrée et recadrée dans ce cadre.
         • largeurMax     : largeur maximale du cadre (ordinateur/tablette). Au-delà, des bandes de couleur l'entourent.
